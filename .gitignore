@@ -1,0 +1,48 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# debug
+.pnpm-debug.log*
+
+# local env files
+*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# Editor directories and files
+.project
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

@@ -1,0 +1,7 @@
+# Ignore artifacts:
+**/.next/**
+**/_next/**
+.output.js
+**/*.svg
+*.min.js
+*.min.css
