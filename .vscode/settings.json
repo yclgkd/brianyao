@@ -62,6 +62,7 @@
     "*.md": "mdx"
   },
   "cSpell.words": [
+    "brianyao",
     "commitlint",
     "nosniff",
     "pnpm",
@@ -69,6 +70,7 @@
     "preinstall",
     "rehype",
     "SAMEORIGIN",
-    "tailwindcss"
+    "tailwindcss",
+    "Vercel"
   ]
 }

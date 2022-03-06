@@ -33,7 +33,7 @@ const withMDX = require('@next/mdx')({
   }
 })
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   async headers() {
     return [
@@ -54,3 +54,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = nextConfig

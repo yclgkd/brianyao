@@ -1,16 +1,18 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
 
   render() {
     const meta = {
-      title: 'Next.js Blog Starter Kit',
-      description: 'Clone and deploy your own Next.js portfolio in minutes.',
-      image: 'https://assets.vercel.com/image/upload/q_auto/front/vercel/dps.png'
+      twitterUsername: 'yclgkd',
+      author: 'Brian Yao',
+      title: "Brian Yao's Blog",
+      description: "Brian Yao's Blog",
+      image: 'https://brianyao.tech/images/avatar.jpeg'
     }
 
     return (
@@ -23,7 +25,7 @@ class MyDocument extends Document {
           <meta property="og:title" content={meta.title} />
           <meta property="og:image" content={meta.image} />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@yourname" />
+          <meta name="twitter:site" content={`@${meta.twitterUsername}`} />
           <meta name="twitter:title" content={meta.title} />
           <meta name="twitter:description" content={meta.description} />
           <meta name="twitter:image" content={meta.image} />
