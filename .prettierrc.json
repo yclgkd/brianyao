@@ -7,5 +7,5 @@
   "trailingComma": "none",
   "bracketSpacing": true,
   "semi": false,
-  "tailwindConfig": "./styles/tailwind.config.js"
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

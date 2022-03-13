@@ -2,7 +2,8 @@
 
 ## TODO
 
-[] site map
-[] rss
-[] self host font
-[] robots.txt
+- [ ] site map
+- [ ] rss
+- [ ] self host font
+- [ ] robots.txt
+- [ ] posts

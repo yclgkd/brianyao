@@ -1,11 +1,21 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { getSortedPostsData } from '../lib/handlePostData'
 import Header from '../components/header'
 import Footer from '../components/footer'
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
+}
+
+const Home: NextPage<Record<string, any[]>> = ({ allPostsData }) => {
   return (
-    <div className="container mx-auto">
+    <div className="max-w-screen-sm mx-auto min-h-screen">
       <Head>
         <title>Brian Yao</title>
         <meta name="description" content="Brian Yao's Blog" />
@@ -13,7 +23,15 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <main>
-        <p>仍在开发中。。。</p>
+        {allPostsData.map(({ id, date, title }) => (
+          <li key={id}>
+            {title}
+            <br />
+            {id}
+            <br />
+            {date}
+          </li>
+        ))}
       </main>
       <Footer />
     </div>
