@@ -15,7 +15,7 @@ export async function getStaticProps() {
 
 const Home: NextPage<Record<string, any[]>> = ({ allPostsData }) => {
   return (
-    <div className="flex flex-col max-w-screen-sm mx-auto min-h-screen px-5">
+    <div className="mx-auto flex min-h-screen max-w-screen-sm flex-col px-5">
       <Head>
         <title>Brian Yao</title>
         <meta name="description" content="Brian Yao's Blog" />
@@ -33,7 +33,7 @@ const Home: NextPage<Record<string, any[]>> = ({ allPostsData }) => {
           </li>
         ))}
       </main>
-      <Footer className='mt-auto' />
+      <Footer className="mt-auto" />
     </div>
   )
 }
