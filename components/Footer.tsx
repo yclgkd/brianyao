@@ -1,4 +1,4 @@
-export default function Footer({
+export function Footer({
   className,
   children
 }: {
