@@ -1,0 +1,154 @@
+---
+title: 'JavaScript, 异步编程和 Promises'
+description: '在这篇教程中你将学习什么是 JS 中的 Promises，Promises 可以有几种状态，以及如何处理在 Promises 中的异步错误。'
+date: '2021-11-07'
+tags: ['JavaScript', '翻译']
+---
+
+> - 原文地址：[JavaScript, Asynchronous Programming, and Promises](https://dzone.com/articles/javascript-asynchronous-programming-and-promises)
+> - 原文作者：Mark Sanders
+> - 译文出自：[掘金翻译计划](https://juejin.cn/translate)
+
+### 在这篇教程中你将学习什么是 JS 中的 Promises，Promises 可以有几种状态，以及如何处理在 Promises 中的异步错误。
+
+在这篇教程中你将学习什么是 JS 中的 Promises，Promises 可以有几种状态，以及如何处理在 Promises 中的异步错误。
+
+如果你已经熟悉这个主题，你可能会对 [如何处理在 JavaScript 中的 Promise 申明](https://learn.coderslang.com/0029-javascript-promise-chains/) 感兴趣。
+
+## 介绍
+
+现在，你只有一些常规值来处理。你在创建了一个变量或者常量后保存了一些东西，变量或常量就可以立即使用了。例如，你可以在控制台打印它。
+
+但是如果这个值没有立即出现，或者需要一些时间出现呢？我们经常从数据库或者是外部服务中获取数据。这些操作会有些耗时，下面是两种处理方式：
+
+- 我们可以尝试中断程序的执行，直到我们接收到了数据。
+- 我们也可以继续执行，当数据呈现的时候再去处理。
+
+这不是说一种方法肯定比另外一种好。两者都契合了不同的需求，因为在不同的情况下我们需要不同的行为。
+
+如果你正在等待的数据对继续执行来说是至关重要的，那么你需要中断执行并且你无法绕开它。如果你可以推迟这个过程，当然就不值得浪费时间，因为你可以做一些别的事情。
+
+## JavaScript 中的 Promise 到底是什么
+
+Promise 是一个特殊的对象类型，它可以帮助你处理一些异步操作。
+
+在不能立即获得返回值的情况下，许多函数会给你返回一个 Promise。
+
+```JavaScript
+const userCount = getUserCount();
+console.log(userCount); // Promise {<pending>}
+```
+
+在这个例子中，`getUserCount` 是一个返回 `Promise` 的函数。如果我们尝试立即显示 `userCount` 变量的值，我们会得到的是 `Promise {<pending>}`。
+
+这是有可能发生的，因为还没有数据，我们需要等待它。
+
+## 在 JavaScript 中 Promise 的状态
+
+一个 Promise 可以有多种状态：
+
+- **进行中（Pending ）** - 响应还没有就绪。请等待。
+- **已完成（Fulfilled）** - 响应已完成。成功。请获取数据。
+- **已拒绝（Rejected）** - 出现了一个错误。请处理它。
+
+当在**进行中**的状态时，我们不可以做任何有用的事情，仅仅是等待。在其他状态中，我们可以增加处理函数，当一个 Promise 进入 Fulfilled 或 Rejected 状态时将调用这些函数。
+
+为了处理这个成功接收的数据，我们需要一个 `then` 函数。
+
+```JavaScript
+const userCount = getUserCount();
+
+const handleSuccess = (result) => {
+console.log(`Promise was fulfilled. Result is ${result}`);
+}
+
+userCount.then(handleSuccess);
+```
+
+对于错误处理我们使用 `catch`。
+
+```JavaScript
+const handleReject = (error) => {
+  console.log(`Promise was rejected. The error is ${error}`);
+}
+
+userCount.catch(handleReject);
+
+```
+
+请注意 `getUserCount` 函数返回一个 Promise，所以我们不能直接使用 `userCount`。为了有效处理返回的数据（data），我们需要增加 `then` 和 `catch` 的处理函数，以便成功或失败的时候可以被调用。
+
+`then` 和 `catch` 函数可以被连续的调用。在这个例子中，我们将会同时关注成功（success）和失败（failure）。
+
+```JavaScript
+const userCount = getUserCount();
+
+const handleSuccess = (result) => {
+  console.log(`Promise was fulfilled. Result is ${result}`);
+}
+
+const handleReject = (error) => {
+  console.log(`Promise was rejected. The error is ${error}`);
+}
+
+userCount.then(handleSuccess).catch(handleReject);
+```
+
+## 在 JS Promises 中的错误处理
+
+假设我们有一个 `getUserData(userId)` 函数，它返回关于用户的信息或者抛出一个错误如果 `userId` 参数有问题的话。
+
+以前，我们添加常规的 `try`/`catch` 并且在 catch 块中处理错误。
+
+```JavaScript
+try {
+  console.log(getUserData(userId));
+} catch (e) {
+  handleError(e);
+}
+```
+
+但是使用常规的 `try`/`catch` 不能在 Promise 的异步代码中捕获出现的错误。
+
+让我们尝试使用返回一个 Promise 的异步函数 `fetchUserData(userId)` 来替代直接返回结果的同步函数 `getUserData(userId)`。
+
+我们想要保持行为的一致性——如果成功则显示结果，如果失败则处理错误。
+
+```JavaScript
+try {
+  fetchUserData(userId).then(console.log);
+} catch (e) {
+  handleError(e);
+}
+```
+
+但是我们不会成功。这在同步代码中不会有问题，所以执行将会被继续。但在异步代码中出现错误时，我们将收到一个 `UnhandledPromiseRejection`，并且我们的程序将会终止。
+
+为了更好的理解程序执行的顺序，让我们来增加一个 `finally` 的块。它将总是会运行（正如预期的那样），但是它会运行在 `UnhandledPromiseRejection` 之前还是之后呢？
+
+```JavaScript
+try {
+  fetchUserData(userId).then(console.log);
+} catch (e) {
+  handleError(e);
+} finally {
+  console.log('finally');
+}
+```
+
+让我们一起按步骤来尝试：
+
+1. 在 `try` 块中我们调用了一个 `fetchUserData` 函数，它将在 `Pending` 状态返回一个 `Promise`。
+2. 这个 `catch` 块会被忽视，因为在 `try` 块中没有错误。异步执行还没有运行！
+3. `finally` 行显示在屏幕上。
+4. 在异步代码中出现了一个错误并且我们在控制台上看见了错误信息——`UnhandledPromiseRejectionWarning`。
+
+为了避免 Promises 中出现未处理的 Rejections，你应该总是在 `catch` 中处理它们。
+
+```JavaScript
+fetchUserJavaScriptData(userId).then(console.log).catch(handleError);
+```
+
+这样的代码会变得更加简短、清晰，并且避免了破坏代码的意外错误。
+
+这里有一个关于处理错误的有趣问题在 [JS Promises from a Junior Interview](https://learn.coderslang.com/js-test-27-handling-errors-in-promise-chains/)。

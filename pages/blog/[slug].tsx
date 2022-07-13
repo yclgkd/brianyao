@@ -4,22 +4,36 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Header, Footer } from '../../components'
+import Link from 'next/link'
 
 const components = { SyntaxHighlighter }
 
 type PostPageProps = {
   frontMatter: {
     title: string
+    description: string
     date: string
+    tags: string[]
   }
   mdxSource: MDXRemoteSerializeResult<Record<string, unknown>>
 }
 
 const PostPage = ({ frontMatter: { title, date }, mdxSource }: PostPageProps) => {
   return (
-    <div className="mt-4">
-      <h1>{title}</h1>
-      <MDXRemote {...mdxSource} components={components} />
+    <div className="blog-container">
+      <Link href={'/'}>
+        <div>
+          <Header className="cursor-pointer" />
+        </div>
+      </Link>
+      <div className="px-5 py-3">
+        <h1 className="mb-2 text-5xl">{title}</h1>
+        <article className="prose dark:prose-invert">
+          <MDXRemote {...mdxSource} components={components} />
+        </article>
+      </div>
+      <Footer />
     </div>
   )
 }

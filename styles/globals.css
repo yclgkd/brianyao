@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .blog-container {
+    @apply mx-auto flex min-h-screen max-w-screen-sm flex-col px-5;
+  }
+}

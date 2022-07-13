@@ -15,23 +15,32 @@ type Props = {
 
 const Home = ({ posts }: Props) => {
   return (
-    <div className="mx-auto flex min-h-screen max-w-screen-sm flex-col px-5">
-      <Header className="p-5" />
+    <div className="blog-container">
+      <Header />
       <section className="space-y-3">
         {posts.map((post, index) => (
           <Link href={'/blog/' + post.slug} passHref key={index}>
-            <div className="card pointer mb-3 w-full cursor-pointer rounded border p-5 shadow-sm duration-100 ease-in-out hover:transform-cpu hover:shadow-inner dark:border-slate-400 md:hover:scale-105">
-              <h2 className="font-bold">{post.frontMatter.title}</h2>
+            <div className="mb-3 w-full cursor-pointer space-y-1 px-5 py-3">
+              <h2 className="text-xl font-bold">{post.frontMatter.title}</h2>
               <p className="text-gray-500">{post.frontMatter.description}</p>
               <p className="text-gray-500">
                 <small className="text-muted">{post.frontMatter.date}</small>
               </p>
+              <div className="flex flex-row flex-wrap space-x-2">
+                {post.frontMatter.tags?.map((i: string, index: number) => (
+                  <div
+                    className="rounded-sm bg-slate-500 px-2 text-center text-sm text-white"
+                    key={index}
+                  >
+                    {i}
+                  </div>
+                ))}
+              </div>
             </div>
           </Link>
         ))}
       </section>
-
-      <Footer className="mt-auto" />
+      <Footer />
     </div>
   )
 }

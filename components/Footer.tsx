@@ -1,14 +1,9 @@
-export function Footer({
-  className,
-  children
-}: {
-  className?: string
-  children?: React.ReactNode
-}) {
+export function Footer({ className }: { className?: string }) {
   return (
-    <footer className={`my-5 flex flex-row flex-wrap items-center justify-center ${className}`}>
+    <footer
+      className={`my-5 mt-auto flex flex-row flex-wrap items-center justify-center pt-10 text-sm ${className}`}
+    >
       <p>Powered by Brian Yao</p>
-      {children}
     </footer>
   )
 }

@@ -1,7 +1,7 @@
 export function Header({ className }: { className?: string }) {
   return (
-    <header className={`my-5 ${className}`}>
-      <h1 className="text-3xl font-bold">Brian Yao</h1>
+    <header className={`mt-5 p-5 ${className}`}>
+      <h1 className="mb-2 text-3xl font-bold">Brian Yao</h1>
     </header>
   )
 }
