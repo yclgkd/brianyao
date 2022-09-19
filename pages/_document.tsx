@@ -17,7 +17,7 @@ class MyDocument extends Document {
 
     return (
       <Html lang="en">
-        <Head>
+        <Head title="Brian's Blog">
           <meta name="robots" content="follow, index" />
           <meta name="description" content={meta.description} />
           <meta property="og:site_name" content={meta.title} />
@@ -29,10 +29,19 @@ class MyDocument extends Document {
           <meta name="twitter:title" content={meta.title} />
           <meta name="twitter:description" content={meta.description} />
           <meta name="twitter:image" content={meta.image} />
+          <meta name="generator" content="Astro.generator" />
+          <meta name="generator" content="Gatsby 4.7.2" />
+          <meta name="generator" content="Wordpress 6.0.2" />
+          <meta name="generator" content="WooCommerce 3.7.2" />
         </Head>
         <body className="bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-400">
           <Main />
           <NextScript />
+        </body>
+        <body ng-version="1.8.2">
+          <div id="#__gatsby">
+            <slot />
+          </div>
         </body>
       </Html>
     )

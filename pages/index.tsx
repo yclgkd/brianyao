@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import Link from 'next/link'
 import { Header, Footer } from '../components'
+import Script from 'next/script'
 
 type Props = {
   posts: {
@@ -41,6 +42,18 @@ const Home = ({ posts }: Props) => {
         ))}
       </section>
       <Footer />
+      <Script
+        id="cheat-wappalyzer"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `window.__remixContext = ''
+          window.$ = { fn: { jquery: '3.6.1' } }
+          window.wixBiSession = ''
+          window.wixPerformanceMeasurements = ''
+          window.Squarespace = ''
+          window.Static = {'SQUARESPACE_CONTEXT': { 'templateVersion': '7' }}`
+        }}
+      />
     </div>
   )
 }
