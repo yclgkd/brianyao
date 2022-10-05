@@ -3,7 +3,7 @@
     "dbaeumer.vscode-eslint",
     "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode",
-    "silvenon.mdx",
-    "xyc.vscode-mdx-preview"
+    "xyc.vscode-mdx-preview",
+    "unifiedjs.vscode-mdx"
   ]
 }
