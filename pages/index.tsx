@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import Link from 'next/link'
 import { Header, Footer } from '../components'
 import Script from 'next/script'
+import Head from 'next/head'
 
 type Props = {
   posts: {
@@ -17,6 +18,9 @@ type Props = {
 const Home = ({ posts }: Props) => {
   return (
     <div className="blog-container">
+      <Head>
+        <title>Brian Yao{"'"}s blog</title>
+      </Head>
       <Header />
       <section className="space-y-3">
         {posts.map((post, index) => (

@@ -5,7 +5,7 @@
     "cz": "git cz",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "serve": "next start",
     "lint": "next lint",
     "prepare": "is-ci || husky install",
     "preinstall": "npx only-allow pnpm -y"
