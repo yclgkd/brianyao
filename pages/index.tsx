@@ -19,30 +19,32 @@ const Home = ({ posts }: Props) => {
   return (
     <div className="blog-container">
       <Head>
-        <title>Brian Yao{"'"}s blog</title>
+        <title>{`Brian Yao's blog`}</title>
       </Head>
       <Header />
       <section className="space-y-3">
         {posts.map((post, index) => (
-          <Link href={'/blog/' + post.slug} passHref key={index}>
-            <div className="mb-3 w-full cursor-pointer space-y-1 px-5 py-3">
-              <h2 className="text-xl font-bold">{post.frontMatter.title}</h2>
-              <p className="text-gray-500">{post.frontMatter.description}</p>
-              <p className="text-gray-500">
-                <small className="text-muted">{post.frontMatter.date}</small>
-              </p>
-              <div className="flex flex-row flex-wrap space-x-2">
-                {post.frontMatter.tags?.map((i: string, index: number) => (
-                  <div
-                    className="rounded-sm bg-slate-500 px-2 text-center text-sm text-white"
-                    key={index}
-                  >
-                    {i}
-                  </div>
-                ))}
-              </div>
+          <div key={index}>
+            <Link href={'/blog/' + post.slug} passHref>
+              <a className="inline-block w-full cursor-pointer space-y-1 py-3 [&>h2]:hover:text-gray-700 [&>h2]:dark:hover:text-gray-100 [&>p]:hover:text-gray-700 [&>p]:dark:hover:text-gray-300">
+                <h2 className="text-xl font-bold">{post.frontMatter.title}</h2>
+                <p className="text-gray-500 dark:text-gray-400">{post.frontMatter.description}</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  <small className="text-muted">{post.frontMatter.date}</small>
+                </p>
+              </a>
+            </Link>
+            <div className="flex flex-row flex-wrap space-x-2">
+              {post.frontMatter.tags?.map((i: string, index: number) => (
+                <div
+                  className="rounded-sm bg-slate-500 px-2 text-center text-sm text-white"
+                  key={index}
+                >
+                  {i}
+                </div>
+              ))}
             </div>
-          </Link>
+          </div>
         ))}
       </section>
       <Footer />

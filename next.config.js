@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
 
 const securityHeaders = [
   {
@@ -40,7 +43,10 @@ const nextConfig = {
     removeConsole: {
       exclude: ['error']
     }
-  }
+  },
+  swcMinify: true,
+  reactStrictMode: true
 }
 
 module.exports = nextConfig
+module.exports = withBundleAnalyzer({})

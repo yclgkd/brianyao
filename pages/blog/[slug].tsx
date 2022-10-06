@@ -5,7 +5,6 @@ import path from 'path'
 import matter from 'gray-matter'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { Header, Footer } from '../../components'
-import Link from 'next/link'
 import Head from 'next/head'
 
 const components = { SyntaxHighlighter }
@@ -21,18 +20,13 @@ type PostPageProps = {
 }
 
 const PostPage = ({ frontMatter: { title, date }, mdxSource }: PostPageProps) => {
-  // window.document.title = title
   return (
     <div className="blog-container">
       <Head>
         <title>{title}</title>
       </Head>
-      <Link href={'/'}>
-        <div>
-          <Header className="cursor-pointer" />
-        </div>
-      </Link>
-      <div className="px-5 py-3">
+      <Header />
+      <div className="py-3">
         <h1 className="mb-2 text-5xl">{title}</h1>
         <article className="prose dark:prose-invert">
           <MDXRemote {...mdxSource} components={components} />

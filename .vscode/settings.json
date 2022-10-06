@@ -34,8 +34,11 @@
     "preinstall",
     "rehype",
     "SAMEORIGIN",
+    "Squarespace",
     "tailwindcss",
     "Vercel",
+    "wappalyzer",
+    "Yao's",
     "yclgkd"
   ],
   "css.validate": false,

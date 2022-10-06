@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import Script from 'next/script'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -17,7 +18,9 @@ class MyDocument extends Document {
 
     return (
       <Html lang="en">
-        <Head title="Brian's Blog">
+        <Head title={`Brian Yao's Blog`}>
+          <meta charSet="utf-8" />
+          <meta name="author" content="Brian Yao" />
           <meta name="robots" content="follow, index" />
           <meta name="description" content={meta.description} />
           <meta property="og:site_name" content={meta.title} />
@@ -33,11 +36,25 @@ class MyDocument extends Document {
           <meta name="generator" content="Wordpress 6.0.2" />
           <meta name="generator" content="WooCommerce 3.7.2" />
         </Head>
-        <body className="bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-400">
+        <body className="bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-300">
+          <Script
+            id="blog-theme"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `(function() {
+                if (
+                  localStorage.theme === 'dark' ||
+                  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                ) {
+                  document.documentElement.classList.add('dark')
+                } else {
+                  document.documentElement.classList.remove('dark')
+                }
+              })()`
+            }}
+          />
           <Main />
           <NextScript />
-        </body>
-        <body>
           <div id="#__gatsby">
             <slot />
           </div>
