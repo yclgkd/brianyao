@@ -29,7 +29,6 @@ class MyDocument extends Document {
           <meta name="twitter:title" content={meta.title} />
           <meta name="twitter:description" content={meta.description} />
           <meta name="twitter:image" content={meta.image} />
-          <meta name="generator" content="Astro.generator" />
           <meta name="generator" content="Gatsby 4.7.2" />
           <meta name="generator" content="Wordpress 6.0.2" />
           <meta name="generator" content="WooCommerce 3.7.2" />
@@ -38,7 +37,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <body ng-version="1.8.2">
+        <body>
           <div id="#__gatsby">
             <slot />
           </div>
