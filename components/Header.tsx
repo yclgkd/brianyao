@@ -25,8 +25,11 @@ export function Header({ className }: { className?: string }) {
       <Link href={'/'}>
         <a className="mb-0 cursor-pointer text-3xl font-bold">Brian Yao</a>
       </Link>
-      <button className="flex cursor-pointer items-center justify-center" onClick={changeDarkMode}>
-        <span className="hidden dark:inline">
+      <button
+        className="relative flex cursor-pointer items-center justify-center"
+        onClick={changeDarkMode}
+      >
+        <span className="absolute right-0 top-0 -translate-x-1/2 -translate-y-1/2 -rotate-180 transform-gpu opacity-0 transition duration-300 ease-in-out dark:rotate-0 dark:opacity-100">
           <svg
             role="img"
             aria-label="dark mode"
@@ -42,7 +45,7 @@ export function Header({ className }: { className?: string }) {
             />
           </svg>
         </span>
-        <span className="dark:hidden">
+        <span className="absolute right-0 top-0 -translate-x-1/2 -translate-y-1/2 rotate-0 transform-gpu transition duration-300 ease-in-out dark:-rotate-180 dark:opacity-0">
           <svg
             role="img"
             aria-label="light mode"
