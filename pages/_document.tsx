@@ -53,6 +53,21 @@ class MyDocument extends Document {
               })()`
             }}
           />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-13ZEYYNWD9"
+            strategy="lazyOnload"
+          />
+          <Script
+            id="blog-ga"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-13ZEYYNWD9');`
+            }}
+          />
           <Main />
           <NextScript />
           <div id="#__gatsby">
