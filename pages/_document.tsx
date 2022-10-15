@@ -55,11 +55,11 @@ class MyDocument extends Document {
           />
           <Script
             src="https://www.googletagmanager.com/gtag/js?id=G-13ZEYYNWD9"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
           />
           <Script
             id="blog-ga"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
               window.dataLayer = window.dataLayer || [];
