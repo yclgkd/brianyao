@@ -1,6 +1,6 @@
 export const BLOG_LANG = 'zh'
 export const BLOG_URL = 'https://brianyao.tech/'
-export const BLOG_ICON = 'https://brianyao.tech/favicon.png'
+export const BLOG_ICON = 'https://brianyao.tech/favicon/favicon-32x32.png'
 export const BLOG_TITLE = `Brian Yao's blog`
 export const BLOG_DESCRIPTION = '一个前端开发者的博客，记录 web 开发的一些技术和心得。'
 export const BLOG_AUTHOR = 'Brian Yao'
