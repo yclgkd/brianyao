@@ -6,6 +6,7 @@ import { Header, Footer } from '../components'
 import Script from 'next/script'
 import Head from 'next/head'
 import * as Config from '@/config'
+import { generateRssFeed } from '@/utils'
 
 type Props = {
   posts: {
@@ -42,7 +43,11 @@ const Home = ({ posts }: Props) => {
                 <h2 className="text-xl font-bold">{post.frontMatter.title}</h2>
                 <p className="text-gray-500 dark:text-gray-400">{post.frontMatter.description}</p>
                 <p className="text-gray-500 dark:text-gray-400">
-                  <small className="text-muted">{post.frontMatter.date}</small>
+                  <small>
+                    <time dateTime={post.frontMatter.date} className="text-muted">
+                      {post.frontMatter.date}
+                    </time>
+                  </small>
                 </p>
               </a>
             </Link>
@@ -77,6 +82,7 @@ const Home = ({ posts }: Props) => {
 }
 
 export const getStaticProps = async () => {
+  await generateRssFeed()
   const files = fs.readdirSync(path.join('_posts'))
 
   const posts = files.map((filename) => {

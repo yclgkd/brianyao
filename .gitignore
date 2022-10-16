@@ -46,3 +46,7 @@ $RECYCLE.BIN/
 *.njsproj
 *.sln
 *.sw*
+
+# RSS
+rss.xml
+public/rss/*

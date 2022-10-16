@@ -9,7 +9,7 @@ export function Footer({ className }: { className?: string }) {
         Powered by{' '}
         <a
           href="https://github.com/yclgkd"
-          className="underline decoration-wavy hover:text-gray-700 dark:hover:text-gray-100"
+          className="hover:text-gray-700 dark:hover:text-gray-100"
         >
           Brian Yao
         </a>

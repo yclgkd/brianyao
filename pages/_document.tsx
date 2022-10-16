@@ -24,6 +24,12 @@ class MyDocument extends Document {
           <meta name="generator" content="Gatsby 4.7.2" />
           <meta name="generator" content="Wordpress 6.0.2" />
           <meta name="generator" content="WooCommerce 3.7.2" />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={Config.BLOG_TITLE}
+            href="/rss.xml"
+          />
         </Head>
         <body className="bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-300">
           <Script
