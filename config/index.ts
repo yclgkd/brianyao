@@ -1,5 +1,6 @@
 export const BLOG_LANG = 'zh'
 export const BLOG_URL = 'https://brianyao.tech/'
+export const BLOG_ICON = 'https://brianyao.tech/favicon.png'
 export const BLOG_TITLE = `Brian Yao's blog`
 export const BLOG_DESCRIPTION = '一个前端开发者的博客，记录 web 开发的一些技术和心得。'
 export const BLOG_AUTHOR = 'Brian Yao'
@@ -11,4 +12,4 @@ export const BLOG_AUTHOR_AVATAR = 'https://brianyao.tech/images/avatar.jpeg'
 export const BLOG_AUTHOR_TWITTER = 'https://twitter.com/yclgkd'
 export const BLOG_AUTHOR_TWITTER_USERNAME = '@yclgkd'
 export const BLOG_AUTHOR_GITHUB = 'https://github.com/yclkgd'
-export const BLOG_AUTHOR_CODEPEN = 'https://codepen.io/brianyao_'
+export const BLOG_AUTHOR_CODEPEN = 'https://codepen.io/yclgkd'
