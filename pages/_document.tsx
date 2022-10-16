@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import Script from 'next/script'
+import * as Config from '@/config'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -8,30 +9,11 @@ class MyDocument extends Document {
   }
 
   render() {
-    const meta = {
-      twitterUsername: 'yclgkd',
-      author: 'Brian Yao',
-      title: "Brian Yao's Blog",
-      description: "Brian Yao's Blog",
-      image: 'https://brianyao.tech/images/avatar.jpeg'
-    }
-
     return (
-      <Html lang="en">
-        <Head title={`Brian Yao's Blog`}>
+      <Html lang={Config.BLOG_LANG}>
+        <Head>
           <meta charSet="utf-8" />
-          <meta name="author" content="Brian Yao" />
-          <meta name="robots" content="follow, index" />
-          <meta name="description" content={meta.description} />
-          <meta property="og:site_name" content={meta.title} />
-          <meta property="og:description" content={meta.description} />
-          <meta property="og:title" content={meta.title} />
-          <meta property="og:image" content={meta.image} />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content={`@${meta.twitterUsername}`} />
-          <meta name="twitter:title" content={meta.title} />
-          <meta name="twitter:description" content={meta.description} />
-          <meta name="twitter:image" content={meta.image} />
+          <meta name="author" content={Config.BLOG_AUTHOR} />
           <meta name="generator" content="Gatsby 4.7.2" />
           <meta name="generator" content="Wordpress 6.0.2" />
           <meta name="generator" content="WooCommerce 3.7.2" />

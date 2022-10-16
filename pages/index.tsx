@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Header, Footer } from '../components'
 import Script from 'next/script'
 import Head from 'next/head'
+import * as Config from '@/config'
 
 type Props = {
   posts: {
@@ -20,6 +21,17 @@ const Home = ({ posts }: Props) => {
     <div className="blog-container">
       <Head>
         <title>{`Brian Yao's blog`}</title>
+        <meta name="description" content={Config.BLOG_DESCRIPTION} />
+        <meta name="robots" content="follow, index" />
+        <meta property="og:site_name" content={Config.BLOG_TITLE} />
+        <meta property="og:title" content={Config.BLOG_TITLE} />
+        <meta property="og:description" content={Config.BLOG_DESCRIPTION} />
+        <meta property="og:image" content={Config.BLOG_AUTHOR_AVATAR} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content={Config.BLOG_AUTHOR_TWITTER_USERNAME} />
+        <meta name="twitter:title" content={Config.BLOG_TITLE} />
+        <meta name="twitter:description" content={Config.BLOG_DESCRIPTION} />
+        <meta name="twitter:image" content={Config.BLOG_AUTHOR_AVATAR} />
       </Head>
       <Header />
       <section className="space-y-3">

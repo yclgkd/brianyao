@@ -6,6 +6,7 @@ import matter from 'gray-matter'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { Header, Footer } from '../../components'
 import Head from 'next/head'
+import * as Config from '@/config'
 
 const components = { SyntaxHighlighter }
 
@@ -19,11 +20,21 @@ type PostPageProps = {
   mdxSource: MDXRemoteSerializeResult<Record<string, unknown>>
 }
 
-const PostPage = ({ frontMatter: { title, date }, mdxSource }: PostPageProps) => {
+const PostPage = ({ frontMatter: { title, description, date }, mdxSource }: PostPageProps) => {
   return (
     <div className="blog-container">
       <Head>
         <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:site_name" content={Config.BLOG_TITLE} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={Config.BLOG_AUTHOR_AVATAR} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content={Config.BLOG_AUTHOR_TWITTER_USERNAME} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={Config.BLOG_AUTHOR_AVATAR} />
       </Head>
       <Header />
       <div className="py-3">
