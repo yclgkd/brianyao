@@ -12,7 +12,6 @@ class MyDocument extends Document {
     return (
       <Html lang={Config.BLOG_LANG}>
         <Head>
-          <meta charSet="utf-8" />
           <meta name="author" content={Config.BLOG_AUTHOR} />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
