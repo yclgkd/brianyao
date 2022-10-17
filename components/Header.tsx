@@ -1,12 +1,14 @@
-import { useRef, MouseEvent, useEffect } from 'react'
+import { MouseEvent, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export function Header({ className }: { className?: string }) {
-  // dark mode state
-  // const [darkMode, setDarkMode] = useState('light')
   const theme = useRef('light')
   useEffect(() => {
-    if (localStorage.theme === 'dark') theme.current = 'dark'
+    const darkModeInLocalStorage = localStorage.theme === 'dark'
+    const darkModeInMediaQuery =
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const darkMode = darkModeInLocalStorage || darkModeInMediaQuery
+    theme.current = darkMode ? 'dark' : 'light'
   }, [])
   // change dark mode event
   const changeDarkMode = (e: MouseEvent<HTMLElement>) => {
@@ -65,7 +67,7 @@ export function Header({ className }: { className?: string }) {
             </svg>
           </span>
         </button>
-        <a aria-label="feed" href="/rss.xml" target="_blank">
+        <a className="hidden lg:inline-block" aria-label="feed" href="/rss.xml" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
