@@ -4,11 +4,11 @@ import Link from 'next/link'
 export function Header({ className }: { className?: string }) {
   const theme = useRef('light')
   useEffect(() => {
-    const darkModeInLocalStorage = localStorage.theme === 'dark'
-    const darkModeInMediaQuery =
+    const themeInMediaQuery =
       window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    const darkMode = darkModeInLocalStorage || darkModeInMediaQuery
-    theme.current = darkMode ? 'dark' : 'light'
+        ? 'dark'
+        : 'light'
+    theme.current = localStorage.theme || themeInMediaQuery
   }, [])
   // change dark mode event
   const changeDarkMode = (e: MouseEvent<HTMLElement>) => {
