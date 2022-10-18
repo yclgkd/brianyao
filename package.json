@@ -16,7 +16,8 @@
     "feed": "^4.2.2",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "rehype-highlight": "^6.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -48,7 +49,6 @@
     "postcss-import": "^15.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
-    "react-syntax-highlighter": "^15.4.4",
     "rehype-katex": "^6.0.2",
     "rehype-mathjax": "^4.0.2",
     "remark-gfm": "^3.0.1",
