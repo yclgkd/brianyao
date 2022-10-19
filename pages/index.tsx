@@ -22,6 +22,10 @@ const Home = ({ posts }: Props) => {
     <div className="blog-container">
       <Head>
         <title>{`Brian Yao's blog`}</title>
+        <meta
+          name="keywords"
+          content="Brian Yao, Brian, Blog, 个人网站, Web 前端, JavaScript, CSS, HTML"
+        />
         <meta name="description" content={Config.BLOG_DESCRIPTION} />
         <meta name="robots" content="follow, index" />
         <meta property="og:site_name" content={Config.BLOG_TITLE} />
