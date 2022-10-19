@@ -7,12 +7,11 @@ import Script from 'next/script'
 import Head from 'next/head'
 import * as Config from '@/config'
 import { generateRssFeed } from '@/utils'
+import type { BlogFrontMatter } from '@/types/blog'
 
 type Props = {
   posts: {
-    frontMatter: {
-      [key: string]: any
-    }
+    frontMatter: BlogFrontMatter
     slug: string
   }[]
 }
@@ -89,16 +88,16 @@ export const getStaticProps = async () => {
   await generateRssFeed()
   const files = fs.readdirSync(path.join('_posts'))
 
-  const posts = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(path.join('_posts', filename), 'utf-8')
-    const { data: frontMatter } = matter(markdownWithMeta)
-
-    return {
-      frontMatter,
-      slug: filename.split('.')[0]
-    }
-  })
-
+  const posts = files
+    .map((filename) => {
+      const markdownWithMeta = fs.readFileSync(path.join('_posts', filename), 'utf-8')
+      const { data: frontMatter } = matter(markdownWithMeta)
+      return {
+        frontMatter,
+        slug: filename.split('.')[0]
+      }
+    })
+    .filter((post) => post.frontMatter.published !== false)
   return {
     props: {
       posts

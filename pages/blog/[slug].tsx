@@ -8,14 +8,10 @@ import Head from 'next/head'
 import * as Config from '@/config'
 import rehypeHighlight from 'rehype-highlight'
 import Script from 'next/script'
+import type { BlogFrontMatter } from '@/types/blog'
 
 type PostPageProps = {
-  frontMatter: {
-    title: string
-    description: string
-    date: string
-    tags: string[]
-  }
+  frontMatter: BlogFrontMatter
   mdxSource: MDXRemoteSerializeResult<Record<string, unknown>>
 }
 
