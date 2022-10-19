@@ -3,6 +3,7 @@ import { Feed } from 'feed'
 import * as Config from '@/config'
 import path from 'path'
 import matter from 'gray-matter'
+import type { BlogFrontMatter } from '@/types/blog'
 
 export async function generateRssFeed() {
   const siteURL = Config.BLOG_URL
@@ -24,28 +25,31 @@ export async function generateRssFeed() {
     updated: date,
     generator: 'Feed for Node.js',
     feedLinks: {
-      rss2: `${siteURL}/rss/feed.xml`,
-      json: `${siteURL}/rss/feed.json`,
-      atom: `${siteURL}/rss/atom.xml`
+      rss2: `${siteURL}/rss.xml`
     },
     author
   })
 
   const files = fs.readdirSync(path.join('_posts'))
 
-  const posts = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(path.join('_posts', filename), 'utf-8')
-    const { data: frontMatter } = matter(markdownWithMeta)
+  type Post = {
+    slug: string
+    frontMatter: BlogFrontMatter
+  }[]
 
-    return {
-      frontMatter,
-      slug: filename.split('.')[0]
-    }
-  })
+  const posts = files
+    .map((filename) => {
+      const markdownWithMeta = fs.readFileSync(path.join('_posts', filename), 'utf-8')
+      const { data: frontMatter } = matter(markdownWithMeta)
+      return {
+        frontMatter,
+        slug: filename.split('.')[0]
+      }
+    })
+    .filter((post) => post.frontMatter.published !== false) as Post
 
   posts.forEach(({ frontMatter, slug }) => {
     const url = `${siteURL}/blog/${slug}`
-
     feed.addItem({
       title: frontMatter.title,
       id: url,
