@@ -98,6 +98,12 @@ export const getStaticProps = async () => {
       }
     })
     .filter((post) => post.frontMatter.published !== false)
+    .sort((prePost, nextPost) => {
+      // 根据时间排序
+      return (
+        new Date(nextPost.frontMatter.date).getTime() - new Date(prePost.frontMatter.date).getTime()
+      )
+    })
   return {
     props: {
       posts
