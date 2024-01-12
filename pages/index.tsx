@@ -41,18 +41,21 @@ const Home = ({ posts }: Props) => {
       <section className="space-y-3">
         {posts.map((post, index) => (
           <div key={index} className="space-y-1 py-3">
-            <Link href={'/blog/' + post.slug} passHref>
-              <a className="inline-block w-full cursor-pointer space-y-1 [&>h2]:hover:text-gray-700 [&>h2]:dark:hover:text-gray-100 [&>p]:hover:text-gray-700 [&>p]:dark:hover:text-gray-300">
-                <p className="text-xl font-bold">{post.frontMatter.title}</p>
-                <p className="text-gray-500 dark:text-gray-400">{post.frontMatter.description}</p>
-                <p className="text-gray-500 dark:text-gray-400">
-                  <small>
-                    <time dateTime={post.frontMatter.date} className="text-muted">
-                      {post.frontMatter.date}
-                    </time>
-                  </small>
-                </p>
-              </a>
+            <Link
+              href={'/blog/' + post.slug}
+              passHref
+              className="inline-block w-full cursor-pointer space-y-1 [&>h2]:hover:text-gray-700 [&>h2]:dark:hover:text-gray-100 [&>p]:hover:text-gray-700 [&>p]:dark:hover:text-gray-300">
+
+              <p className="text-xl font-bold">{post.frontMatter.title}</p>
+              <p className="text-gray-500 dark:text-gray-400">{post.frontMatter.description}</p>
+              <p className="text-gray-500 dark:text-gray-400">
+                <small>
+                  <time dateTime={post.frontMatter.date} className="text-muted">
+                    {post.frontMatter.date}
+                  </time>
+                </small>
+              </p>
+
             </Link>
             <div className="flex flex-row flex-wrap space-x-2">
               {post.frontMatter.tags?.map((i: string, index: number) => (
@@ -81,7 +84,7 @@ const Home = ({ posts }: Props) => {
         }}
       />
     </div>
-  )
+  );
 }
 
 export const getStaticProps = async () => {

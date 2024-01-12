@@ -24,8 +24,8 @@ export function Header({ className }: { className?: string }) {
   }
   return (
     <header className={`mt-5 flex items-center justify-between py-5 ${className || ''}`}>
-      <Link href={'/'}>
-        <a className="mb-0 cursor-pointer text-3xl font-bold">Brian Yao</a>
+      <Link href={'/'} className="mb-0 cursor-pointer text-3xl font-bold">
+        Brian Yao
       </Link>
       <div className="flex flex-row flex-wrap items-center justify-between space-x-2">
         <button
@@ -85,5 +85,5 @@ export function Header({ className }: { className?: string }) {
         </a>
       </div>
     </header>
-  )
+  );
 }
